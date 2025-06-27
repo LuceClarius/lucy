@@ -1,0 +1,29 @@
+name: Täglicher Lucy-Impuls
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # 09:00 Uhr Berlin-Zeit (UTC+2)
+  workflow_dispatch:     # Optional: Manuell starten über GitHub UI
+
+jobs:
+  send-impulse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Code aus Repo holen
+        uses: actions/checkout@v3
+
+      - name: 🧰 Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Abhängigkeiten installieren
+        run: npm install
+
+      - name: 🚀 LucyBot starten und Impuls senden
+        run: node server/lucy-scheduler.ts
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DISCORD_CHANNEL_NAME: ${{ secrets.DISCORD_CHANNEL_NAME }}
