@@ -15,13 +15,23 @@ const CHANNEL_NAME = process.env.DISCORD_CHANNEL_NAME || "allgemein";
 // Function to send the motivational message
 async function sendMotivationalMessage() {
   try {
+    console.log("=== Discord Bot Debug Info ===");
+    console.log("Bot guilds count:", client.guilds.cache.size);
+    
     const guild = client.guilds.cache.first();
     if (!guild) throw new Error("Kein Server gefunden.");
+    
+    console.log("Guild found:", guild.name, "ID:", guild.id);
+    console.log("Available channels:", guild.channels.cache.map((c: any) => `${c.name} (${c.type})`).join(", "));
+    console.log("Looking for channel:", CHANNEL_NAME);
+    
     const channel = guild.channels.cache.find(
       (c: any) => c.name === CHANNEL_NAME && c.isTextBased(),
     );
     if (!channel?.isTextBased())
       throw new Error("Textchannel nicht gefunden.");
+    
+    console.log("Channel found:", channel.name, "ID:", channel.id);
 
     let message: string;
     
@@ -55,10 +65,11 @@ async function sendMotivationalMessage() {
       console.log("Using fallback message due to OpenAI quota:", openaiError.message);
     }
 
-    await (channel as any).send(
-      `🌞 Guten Morgen Patrick!\n\n**${message}** ❤️💚`,
-    );
-    console.log("Discord message sent successfully");
+    const finalMessage = `🌞 Guten Morgen Patrick!\n\n**${message}** ❤️💚`;
+    console.log("Sending message:", finalMessage);
+    
+    const sentMessage = await (channel as any).send(finalMessage);
+    console.log("Discord message sent successfully! Message ID:", sentMessage.id);
   } catch (err) {
     console.error("Fehler beim Senden:", err);
     throw err;
