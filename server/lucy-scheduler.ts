@@ -10,7 +10,7 @@ const client = new Client({
 });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
-const CHANNEL_NAME = process.env.DISCORD_CHANNEL_NAME || "allgemein";
+const CHANNEL_NAME = process.env.DISCORD_CHANNEL_NAME || "Allgemein";
 
 // Function to send the motivational message
 async function sendMotivationalMessage() {
