@@ -37,6 +37,10 @@ async function sendMotivationalMessage() {
     
     // Try OpenAI first, fallback to pre-written messages if quota exceeded
     try {
+      console.log("Testing OpenAI connection...");
+      console.log("API Key exists:", !!process.env.OPENAI_API_KEY);
+      console.log("API Key preview:", process.env.OPENAI_API_KEY?.substring(0, 10) + "...");
+      
       const response = await openai.chat.completions.create({
         model: "gpt-4o",
         messages: [
@@ -51,8 +55,19 @@ async function sendMotivationalMessage() {
           },
         ],
       });
+      
       message = response.choices[0].message.content || "Habe einen wundervollen Tag! ✨";
+      console.log("OpenAI response received successfully! Message length:", message.length);
+      console.log("OpenAI message preview:", message.substring(0, 50) + "...");
+      
     } catch (openaiError: any) {
+      console.log("=== OpenAI Error Details ===");
+      console.log("Error type:", openaiError.constructor.name);
+      console.log("Error status:", openaiError.status);
+      console.log("Error code:", openaiError.code);
+      console.log("Error message:", openaiError.message);
+      console.log("Full error:", JSON.stringify(openaiError, null, 2));
+      
       // Fallback messages when OpenAI quota is exceeded
       const fallbackMessages = [
         "Jeder neue Tag ist eine Chance, das Leben mit mehr Liebe und Achtsamkeit zu leben. ✨",
@@ -62,7 +77,7 @@ async function sendMotivationalMessage() {
         "Du bist genau da, wo du sein sollst. Vertraue dem Prozess des Lebens. 🌱"
       ];
       message = fallbackMessages[Math.floor(Math.random() * fallbackMessages.length)];
-      console.log("Using fallback message due to OpenAI quota:", openaiError.message);
+      console.log("Using fallback message due to OpenAI error");
     }
 
     const finalMessage = `🌞 Guten Morgen Patrick!\n\n**${message}** ❤️💚`;
