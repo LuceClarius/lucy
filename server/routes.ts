@@ -281,6 +281,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Manual trigger endpoint for Discord bot
+  app.post("/api/discord/trigger", async (req, res) => {
+    try {
+      const { triggerLucyBot } = require("./lucy-scheduler");
+      await triggerLucyBot();
+      res.json({ message: "Discord message sent successfully" });
+    } catch (error) {
+      console.error("Failed to trigger Discord bot:", error);
+      res.status(500).json({ message: "Failed to send Discord message", error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
