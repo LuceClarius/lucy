@@ -7,6 +7,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Ensure API routes are handled before Vite middleware
+app.use('/api', (req, res, next) => {
+  // Force Express to handle API routes, not Vite
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;

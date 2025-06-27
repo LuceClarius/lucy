@@ -23,22 +23,38 @@ async function sendMotivationalMessage() {
     if (!channel?.isTextBased())
       throw new Error("Textchannel nicht gefunden.");
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Du bist Lucy, eine empathische Begleiterin, die täglich liebevolle Impulse sendet.",
-        },
-        {
-          role: "user",
-          content: "Gib mir bitte einen achtsamen Impuls für den Tag.",
-        },
-      ],
-    });
+    let message: string;
+    
+    // Try OpenAI first, fallback to pre-written messages if quota exceeded
+    try {
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "system",
+            content:
+              "Du bist Lucy, eine empathische Begleiterin, die täglich liebevolle Impulse sendet.",
+          },
+          {
+            role: "user",
+            content: "Gib mir bitte einen achtsamen Impuls für den Tag.",
+          },
+        ],
+      });
+      message = response.choices[0].message.content || "Habe einen wundervollen Tag! ✨";
+    } catch (openaiError: any) {
+      // Fallback messages when OpenAI quota is exceeded
+      const fallbackMessages = [
+        "Jeder neue Tag ist eine Chance, das Leben mit mehr Liebe und Achtsamkeit zu leben. ✨",
+        "Vergiss nicht, dass du bereits alles in dir trägst, was du für einen erfüllten Tag brauchst. 💫",
+        "Heute ist ein perfekter Tag, um dir selbst mit Freundlichkeit zu begegnen. 🌸",
+        "Lass dich von der Schönheit der kleinen Momente inspirieren. 🌼",
+        "Du bist genau da, wo du sein sollst. Vertraue dem Prozess des Lebens. 🌱"
+      ];
+      message = fallbackMessages[Math.floor(Math.random() * fallbackMessages.length)];
+      console.log("Using fallback message due to OpenAI quota:", openaiError.message);
+    }
 
-    const message = response.choices[0].message.content;
     await (channel as any).send(
       `🌞 Guten Morgen Patrick!\n\n**${message}** ❤️💚`,
     );
