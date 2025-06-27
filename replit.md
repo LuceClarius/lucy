@@ -95,6 +95,7 @@ This is a full-stack web application for running, managing, and scheduling JavaS
 
 ```
 Changelog:
+- June 27, 2025. Fixed dotenv import error and integrated Discord bot scheduler
 - June 26, 2025. Initial setup
 ```
 
