@@ -24,6 +24,9 @@ jobs:
       - name: Weitere Abhängigkeiten installieren 
         run: npm install ts-node typescript
 
+      - name: Compile LucyRunner
+        run: tsc server/lucy-scheduler.ts
+       
       - name: 🚀 LucyBot starten und Impuls senden
         run: node --project tsconfig.tsnode.json --loader ts-node/esm server/lucy-scheduler.ts
         env:
