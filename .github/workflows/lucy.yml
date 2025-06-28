@@ -21,6 +21,8 @@ jobs:
       - name: 📦 Abhängigkeiten installieren
         run: npm install
 
+      - run: npm install --save-dev ts-node typescript
+
       - name: 🚀 LucyBot starten und Impuls senden
         run: node server/lucy-scheduler.ts
         env:
