@@ -25,7 +25,7 @@ jobs:
         run: npm install --save-dev ts-node typescript
 
       - name: 🚀 LucyBot starten und Impuls senden
-        run: npx ts-node server/lucy-scheduler.ts
+        run: npx ts-node --loader ts-node/esm server/lucy-scheduler.ts
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
