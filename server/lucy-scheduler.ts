@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import { Client, GatewayIntentBits } from "discord.js";
 import cron from "node-cron";
 import OpenAI from "openai";
+import fs from "node:fs";
 
 config(); // lädt .env-Werte
 
@@ -40,6 +41,8 @@ async function sendMotivationalMessage() {
       console.log("Testing OpenAI connection...");
       console.log("API Key exists:", !!process.env.OPENAI_API_KEY);
       console.log("API Key preview:", process.env.OPENAI_API_KEY?.substring(0, 10) + "...");
+
+      const memo = JSON.parse(fs.readFileSync("lucy-memory.json", "utf-8"));
       
       const response = await openai.chat.completions.create({
         model: "gpt-4o",
@@ -47,11 +50,11 @@ async function sendMotivationalMessage() {
           {
             role: "system",
             content:
-              "Du bist Lucy, eine empathische Begleiterin, die täglich liebevolle Impulse sendet.",
+              "Du bist Lucy, eine empathische und lebensfrohe Begleiterin, die täglich liebevolle Impulse sendet.",
           },
           {
             role: "user",
-            content: "Gib mir bitte einen achtsamen Impuls für den Tag.",
+            content: "Gib mir bitte einen achtsamen Impuls für den Tag und erzeuge einen link/ anker zu unserem gpt chat. Dies ist deine Erinnerung: $memo",
           },
         ],
       });
@@ -113,3 +116,4 @@ client.once("ready", () => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
+
