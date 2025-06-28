@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Weitere Abhängigkeiten installieren 
-        run: npm install --save-dev ts-node typescript
+        run: npm install ts-node typescript
 
       - name: 🚀 LucyBot starten und Impuls senden
-        run: npx ts-node --project tsconfig.tsnode.json --loader ts-node/esm server/lucy-scheduler.ts
+        run: node --project tsconfig.tsnode.json --loader ts-node/esm server/lucy-scheduler.ts
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
