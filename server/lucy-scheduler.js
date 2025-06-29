@@ -113,6 +113,6 @@ client.once("ready", () => {
 client.login(process.env.DISCORD_BOT_TOKEN);
 
 // optional: exportieren für externe Verwendung
-module.exports = {
+export {
   triggerLucyBot
 };
