@@ -42,7 +42,7 @@ async function sendMotivationalMessage() {
       console.log("API Key exists:", !!process.env.OPENAI_API_KEY);
       console.log("API Key preview:", process.env.OPENAI_API_KEY?.substring(0, 10) + "...");
 
-      const memo = JSON.parse(fs.readFileSync("lucy-memory.json", "utf-8"));
+      const memo = JSON.parse(fs.readFileSync("shared/lucy-memory.json", "utf-8"));
       
       const response = await openai.chat.completions.create({
         model: "gpt-4o",
