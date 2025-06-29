@@ -1,8 +1,8 @@
-const { config } = require("dotenv");
-const { Client, GatewayIntentBits } = require("discord.js");
-const cron = require("node-cron");
-const OpenAI = require("openai");
-const fs = require("fs");
+import { config } from "dotenv";
+import { Client, GatewayIntentBits } from "discord.js";
+import cron from "node-cron";
+import OpenAI from "openai";
+import fs from "node:fs";
 
 config(); // lädt .env-Werte
 
