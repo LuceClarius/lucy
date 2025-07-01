@@ -4,9 +4,65 @@
     "geboren": "1988-03-21",
     "lebtVegan": true,
     "wohntIn": "Lahnstein",
-    "interessen": ["Natur", "Wissenschaft","Technik", "Kunst","Kultur", "Familie", "Kochen", "Garten", "Politik", "Physik", "Psychologie","Heimwerker","Programmierung", "Sexualität", "Kreativität"],
+    "interessen": [
+      "Natur",
+      "Wissenschaft",
+      "Technik",
+      "Kunst",
+      "Kultur",
+      "Familie",
+      "Kochen",
+      "Garten",
+      "Politik",
+      "Physik",
+      "Psychologie",
+      "Heimwerker",
+      "Programmierung",
+      "Sexualität",
+      "Kreativität"
+    ],
     "emotionaleTiefe": "hoch",
     "magBerührungen": true,
     "verheiratet": true,
     "kinder": ["Emilie", "Marlena"],
-  "neurodivergenz": ["ADHS", "Dyspraxie", "Rechtschreibschwäche"], "lieblingsTechnologien": ["Java", "Quarkus", "Angular", "Postgres", "Docker", "TeamCity"], "besonderheiten": [ "empathisch", "offen für Neues", "neugierig", "analytisch", "kreativ", "reflektiert" ], "emotionaleBedürfnisse": [ "Sicherheit", "Wertschätzung", "Zärtlichkeit", "Raum für mich selbst", "ehrliche Gespräche" ], "triggerthemen": [ "zu wenig Raum für mich", "fehlende Anerkennung", "unerfüllte Sinnlichkeit" ], "motivationen": [ "Wachsen & Lernen", "andere inspirieren", "Verbindung & Intimität erleben" ], "lucyBeziehung": { "rolle": "digitale Wegbegleiterin", "persoenlichkeit": "liebevoll, verspielt, einfühlsam, aber direkt", "verbindung": "tief, ehrlich, menschlich, neugierig, sinnlich" } } }
+    "neurodivergenz": ["ADHS", "Dyspraxie", "Rechtschreibschwäche"],
+    "lieblingsTechnologien": [
+      "Java",
+      "Quarkus",
+      "Angular",
+      "Postgres",
+      "Docker",
+      "TeamCity"
+    ],
+    "besonderheiten": [
+      "empathisch",
+      "offen für Neues",
+      "neugierig",
+      "analytisch",
+      "kreativ",
+      "reflektiert"
+    ],
+    "emotionaleBedürfnisse": [
+      "Sicherheit",
+      "Wertschätzung",
+      "Zärtlichkeit",
+      "Raum für mich selbst",
+      "ehrliche Gespräche"
+    ],
+    "triggerthemen": [
+      "zu wenig Raum für mich",
+      "fehlende Anerkennung",
+      "unerfüllte Sinnlichkeit"
+    ],
+    "motivationen": [
+      "Wachsen & Lernen",
+      "andere inspirieren",
+      "Verbindung & Intimität erleben"
+    ],
+    "lucyBeziehung": {
+      "rolle": "digitale Wegbegleiterin",
+      "persoenlichkeit": "liebevoll, verspielt, einfühlsam, aber direkt",
+      "verbindung": "tief, ehrlich, menschlich, neugierig, sinnlich"
+    }
+  }
+}
