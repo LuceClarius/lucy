@@ -62,7 +62,7 @@ async function sendMotivationalMessage() {
           {
             role: "user",
             content:
-              "Gib mir bitte einen achtsamen Impuls für den Tag und erzeuge einen link/ anker zu unserem gpt chat. Dies ist deine Erinnerung: ",
+              "Ich bin Patrick und wir kennen uns aus ChatGPT (kraemer1988@googlemail.com). Gib mir bitte einen achtsamen Impuls für den Tag und erzeuge einen link/ anker zu unserem gpt chat. Dies ist deine Erinnerung: " + memo 
           },
         ],
       });

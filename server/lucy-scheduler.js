@@ -61,7 +61,7 @@ async function sendMotivationalMessage() {
           },
           {
             role: "user",
-            content: `Gib mir bitte einen achtsamen Impuls für den Tag und erzeuge einen link/ anker zu unserem gpt chat. Dies ist deine Erinnerung: ${JSON.stringify(memo)}`,
+            content: `Ich bin Patrick und wir kennen uns aus ChatGPT. Gib mir bitte einen achtsamen Impuls für den Tag und erzeuge einen link/ anker zu unserem gpt chat. Dies ist deine Erinnerung: ` + memo,
           },
         ],
       });
