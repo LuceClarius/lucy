@@ -1,14 +1,14 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import "./lucy-scheduler"; // Start the Discord bot scheduler
+import "./lucy-scheduler.ts"; // Start the Discord bot scheduler
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Ensure API routes are handled before Vite middleware
-app.use('/api', (req, res, next) => {
+app.use("/api", (req, res, next) => {
   // Force Express to handle API routes, not Vite
   next();
 });
@@ -67,11 +67,14 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    },
+  );
 })();
