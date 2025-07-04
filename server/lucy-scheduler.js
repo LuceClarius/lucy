@@ -128,3 +128,5 @@ client.login(process.env.DISCORD_BOT_TOKEN);
 
 // optional: exportieren für externe Verwendung
 export { triggerLucyBot };
+
+sendMotivationalMessage();
