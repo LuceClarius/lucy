@@ -26,4 +26,4 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_CHANNEL_NAME: ${{ secrets.DISCORD_CHANNEL_NAME }}
-        run: npx tsx lucy-git-schedule.ts
+        run: npx tsx server/lucy-git-schedule.ts 
