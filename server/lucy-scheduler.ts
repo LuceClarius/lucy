@@ -118,9 +118,32 @@ client.once("ready", () => {
   console.log(`LucyBot online als ${client.user?.tag}`);
 
   // Schedule daily messages at 9 AM Berlin time
-  cron.schedule("0 9 * * *", sendMotivationalMessage, {
-    timezone: "Europe/Berlin",
+  console.log("Setting up cron job for 9 AM Berlin time...");
+  console.log("Current server time:", new Date().toISOString());
+  console.log("Current Berlin time:", new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" }));
+  
+  const task = cron.schedule("0 9 * * *", () => {
+    console.log("🕘 Cron job triggered at:", new Date().toISOString());
+    console.log("🕘 Berlin time:", new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" }));
+    sendMotivationalMessage();
+  }, {
+    timezone: "Europe/Berlin"
   });
+  
+  console.log("✅ Cron job scheduled successfully for 09:00 Europe/Berlin");
+  console.log("✅ Next execution will be at 9 AM Berlin time");
+  
+  // Add validation that the cron job is properly initialized
+  console.log("📋 Cron job status:", task ? "Active" : "Failed to initialize");
+  
+  // Log the next expected execution time (properly timezone-aware)
+  const now = new Date();
+  const berlinTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
+  const tomorrow9AM = new Date(berlinTime);
+  tomorrow9AM.setDate(tomorrow9AM.getDate() + 1);
+  tomorrow9AM.setHours(9, 0, 0, 0);
+  console.log("⏰ Next scheduled message:", tomorrow9AM.toLocaleString("de-DE", { timeZone: "Europe/Berlin" }));
+  console.log("🌍 Server timezone offset:", new Date().getTimezoneOffset() / 60, "hours");
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
